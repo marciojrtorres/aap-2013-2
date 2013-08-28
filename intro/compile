@@ -1,4 +1,4 @@
 #!/bin/bash
 echo Compilando ...
-javac -cp bin src/intro/Main.java     -d bin #-verbose
-echo Finalizado.
+javac -cp bin src/intro/Main.java     -d bin
+echo Compilado.

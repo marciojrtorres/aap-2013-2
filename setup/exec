@@ -1,2 +1,6 @@
 #!/bin/bash
-java -cp bin teste.Main
+if [ -d "bin" ]; then
+  java -cp bin teste.Main
+else
+  echo Não existe bin
+fi
