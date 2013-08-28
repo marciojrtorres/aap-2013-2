@@ -1,0 +1,4 @@
+#!/bin/bash
+echo Executando ...
+java -cp bin intro.Main
+echo Finalizado.
