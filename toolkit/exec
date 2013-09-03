@@ -1,0 +1,4 @@
+#!/bin/bash
+echo Executando ...
+java -cp bin toolkit.Main
+echo Finalizado.
