@@ -16,9 +16,7 @@ public class Main {
         // definição da API: definir a interface
         // definir a assinatura do método
         out.println(trim(" prog  ").equals("prog"));
-        out.println(trim(" prog av ").equals("prog av"))
-
-
+        out.println(trim(" prog av ").equals("prog av"));
 
     }   
 }
