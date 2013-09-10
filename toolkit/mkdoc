@@ -1,0 +1,3 @@
+#!/bin/bash
+echo Gerando a documentacao ...
+javadoc -d doc -sourcepath src toolkit
