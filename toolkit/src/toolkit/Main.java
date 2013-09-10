@@ -38,7 +38,33 @@ public class Main {
         out.println(lower('Ç'));
 
         // pode ser NPE   // faz o programa quebrar (ver Fail Fast)
-        // pode voltar String vazia // nÃ£o quebram
-        // pode voltar null // nÃ£o quebram
+        // pode voltar String vazia // nao quebram
+        // pode voltar null // nao quebram
+
+        out.println(IntUtil.strToInt("12") == 12); // strToInt(String):int
+        out.println(IntUtil.strToInt(" 12") == 12);
+        out.println(IntUtil.strToInt("     12") == 12);
+        out.println(IntUtil.strToInt("12abc") == 12);
+        out.println(IntUtil.strToInt(" 12abc") == 12);
+        out.println(IntUtil.strToInt(" 12 abc") == 12);
+        out.println(IntUtil.strToInt("abc") == 0);
+        out.println(IntUtil.strToInt("abc12") == 0);
+        out.println(IntUtil.strToInt("12a2") == 12);
+        out.println(IntUtil.strToInt("") == 0);
+        out.println(IntUtil.strToInt("12.2") == 12);
+        out.println(IntUtil.strToInt("12 23") == 12);
+        out.println(IntUtil.strToInt("123") == 123);
+        out.println(IntUtil.strToInt("/123") == 0);
+        out.println(IntUtil.strToInt("-12") == -12);
+        out.println(IntUtil.strToInt("--12") == 0);
+        out.println(IntUtil.strToInt("+12") == 0);
+        out.println(IntUtil.strToInt(".12") == 0);        
+
+        try {
+            out.println(IntUtil.strToInt(null));
+        } catch (NullPointerException npe) {
+            out.println("correto: exceção lançada");
+        }
+        
     }   
 }

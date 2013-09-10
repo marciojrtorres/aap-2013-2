@@ -1,5 +1,11 @@
 package toolkit;
 
+/**
+ * Classe utilitária com métodos para lidar com Strings
+ *
+ * @author Márcio Torres (marcio.torres@riogrande.ifrs.edu.br)
+ * @since JDK 1.5 (versão mínima do Java para compilar)
+ */
 public class StringUtil {    
 
     // Princípio da Menor Surpresa
@@ -10,23 +16,39 @@ public class StringUtil {
     private static final int ASCII_DIFF_UPPER_LOWER  = 32;
     private static final int ASCII_LOWER_START_INDEX = 97;
     private static final int ASCII_LOWER_END_INDEX   = 122;
-    
-    public static String upper(String s) {
-        // if (s == null) return null; // retornar cedo
-        if (s == null) {
-            throw new NullPointerException("A String não pode ser nula");            
-        }
+    private static final int TO_UPPER = 0;
+    private static final int TO_LOWER = 1;
+    // Refatoração: introduzir método
+    private static String changeCase(String s, int caseType) {        
+        if (s == null) return null;
         char[] chars = s.toCharArray();
         for (int i = 0; i < chars.length; i++) {
-
-            if (ehMinusculo(chars[i])) {
-
-                chars[i] = (char) (chars[i] - ASCII_DIFF_UPPER_LOWER);
-            }
-
+            char c = chars[i];            
+            if (caseType == 0 && ehMinusculo(c)) chars[i] = upper(c);
+            if (caseType == 1 && ehMaiusculo(c)) chars[i] = lower(c);
         } 
         return new String(chars);
+    }    
+
+    // javadoc: /**   */
+
+    /**
+     * Este método converte uma String com letras minúsculas
+     * para maiúsculas. Números, símbolos e outros não-letras
+     * ficam iguais.
+     *
+     * @param s    É uma String com letras minúsculas
+     * @return     A String com letras maiúsculas, caracteres
+     *             não-letras retornam iguais e caso a String
+     *             de entrada for null retorna null
+     */
+    public static String upper(String s) {
+        return changeCase(s, TO_UPPER);
     }
+
+    public static String lower(String s) {
+        return changeCase(s, TO_LOWER);
+    }  
     /* não faça isso
     public static String lower(String s) {
         if (s != null) {
@@ -42,18 +64,7 @@ public class StringUtil {
         }        
     } 
     */
-    public static String lower(String s) {
-        if (s == null) {
-            throw new NullPointerException("A String não pode ser nula");            
-        }
-        char[] chars = s.toCharArray();
-        for (int i = 0; i < chars.length; i++) {
-            if (ehMaiusculo(chars[i])) {
-                chars[i] = (char) (chars[i] + ASCII_DIFF_UPPER_LOWER);
-            }
-        }
-        return new String(chars);        
-    }   
+     
     // Princípio da Responsabilidade Única (Single Responsibility Principle)
     private static boolean ehMaiusculo(char c) {
         return (c >= 65 && c <= 90) || c == 199 || c == 195;
