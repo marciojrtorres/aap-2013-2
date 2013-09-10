@@ -3,3 +3,6 @@
 *.jar
 *.war
 *.ear
+doc/
+bin/
+*~
