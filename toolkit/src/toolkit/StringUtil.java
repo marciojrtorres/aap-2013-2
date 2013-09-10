@@ -1,58 +1,85 @@
 package toolkit;
 
 public class StringUtil {    
-    // escolher assinatura
-    // escolher uma API
-    // toUpperCase(String):String
-    // toUpper(String):String
-    // upper(String):String
-    // upcase(String):String
 
-    // entrada inválida:
-    // != a-z
-    // lanço uma exceção? retorna string vazia?
-    // retorna a mesma string que entrou?
-    // retorna nulo?
-
+    // Princípio da Menor Surpresa
+    // Princípio: DRY: Don't Repeat Yourself: NSR: Não Se Repita
+    // Refatoração: renomear, introduzir constante,
+    // introduzir variável explicativa
 
     private static final int ASCII_DIFF_UPPER_LOWER  = 32;
     private static final int ASCII_LOWER_START_INDEX = 97;
     private static final int ASCII_LOWER_END_INDEX   = 122;
-
-    // Refatoração: alterar o código sem alterar a funcionalidade
-    // melhorar a qualidade interna do software
-
+    
     public static String upper(String s) {
+        // if (s == null) return null; // retornar cedo
+        if (s == null) {
+            throw new NullPointerException("A String não pode ser nula");            
+        }
         char[] chars = s.toCharArray();
         for (int i = 0; i < chars.length; i++) {
 
-            boolean ehMinusculo = chars[i] >= ASCII_LOWER_START_INDEX 
-                    && chars[i] <= ASCII_LOWER_END_INDEX;
+            if (ehMinusculo(chars[i])) {
 
-            if (ehMinusculo) {
                 chars[i] = (char) (chars[i] - ASCII_DIFF_UPPER_LOWER);
             }
 
         } 
         return new String(chars);
     }
-
-    // regra fundamental para projetar API's:
-    // manter consistente.
-
+    /* não faça isso
     public static String lower(String s) {
+        if (s != null) {
+            char[] chars = s.toCharArray();
+            for (int i = 0; i < chars.length; i++) {
+                if (chars[i] >= 65 && chars[i] <= 90) {
+                    chars[i] = (char) (chars[i] + ASCII_DIFF_UPPER_LOWER);
+                }
+            }
+            return new String(chars);
+        } else {
+            return null;
+        }        
+    } 
+    */
+    public static String lower(String s) {
+        if (s == null) {
+            throw new NullPointerException("A String não pode ser nula");            
+        }
         char[] chars = s.toCharArray();
         for (int i = 0; i < chars.length; i++) {
-            if (chars[i] >= 65 && chars[i] <= 90) {
+            if (ehMaiusculo(chars[i])) {
                 chars[i] = (char) (chars[i] + ASCII_DIFF_UPPER_LOWER);
             }
         }
-        return new String(chars);
-    }    
+        return new String(chars);        
+    }   
+    // Princípio da Responsabilidade Única (Single Responsibility Principle)
+    private static boolean ehMaiusculo(char c) {
+        return (c >= 65 && c <= 90) || c == 199 || c == 195;
+    }
 
-    // Code Smell: mau cheiro no código
-    // o código funciona, mas há a 
-    // percepção de deselegância
+    private static boolean ehMinusculo(char c) {
+        return (c >= ASCII_LOWER_START_INDEX 
+                    && c <= ASCII_LOWER_END_INDEX)
+                    || c == 231 || c == 227;
+    }
+
+    public static char lower(char c) {
+        if (ehMaiusculo(c)) {
+            c += ASCII_DIFF_UPPER_LOWER;            
+        }
+        return c;
+    }  
+
+    public static char upper(char c) {
+         if ((c >= ASCII_LOWER_START_INDEX 
+                    && c <= ASCII_LOWER_END_INDEX)
+                    || c == 231 || c == 227) {
+            c -= ASCII_DIFF_UPPER_LOWER;
+        }
+        return c;
+    }   
 
     public static String trim(String s) {
         return s;
