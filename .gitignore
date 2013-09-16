@@ -5,4 +5,5 @@
 *.ear
 doc/
 bin/
+dist/
 *~
