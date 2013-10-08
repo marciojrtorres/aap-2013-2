@@ -3,6 +3,7 @@ package cobaia;
 // padrão java bean (get, set, is)
 public class Agua {
 
+    private static final int TEMPERATURA_MINIMA = -273;
     private int temperatura;
 
     public Agua() {
@@ -33,8 +34,12 @@ public class Agua {
         temperatura++;
     }
 
-    public void esfria() {
-        temperatura--;
+    public boolean esfria() {
+        if (temperatura > TEMPERATURA_MINIMA) {
+            temperatura--;
+            return true;
+        }
+        return false;
     }
 
     @Override

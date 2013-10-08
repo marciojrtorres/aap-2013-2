@@ -1,16 +1,29 @@
 package cobaia;
 
 import static java.lang.System.out;
+import toolkit.List;
 
 public class Main {
     public static void main(String[] argumentos) {
-        
-        // um objeto: estado válido ou inválido
-        Agua agua = new Agua(50);
+    
+        Cliente cliente = new Cliente();
+        cliente.setNome("Gabrieli");
 
-        while (!agua.estaSolida()) agua.esfria();
+        if (Boolean.TRUE.equals(cliente.isVip())) {
+            out.println("eh vip!");
+        }
 
-        out.println(agua);        
+        if ("Gabrieli".equals(cliente.getNome())) {
+            out.println("eh a Gabrieli");
+        }     
+        // polimorfismo paramétrico
+        // parametrizar os tipos        
+        cliente.getTelefones().append("323345222");
+        cliente.getTelefones().append(new Endereco());
+        cliente.getTelefones().prepend("99223344");
+
+        String primeiro = (String) cliente.getTelefones().first();
+        out.println(primeiro);
 
     }   
 }

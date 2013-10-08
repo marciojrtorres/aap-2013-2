@@ -1,5 +1,10 @@
 #!/bin/bash
 echo Compilando ...
-javac -cp bin src/cobaia/Agua.java -d bin
-javac -cp bin src/cobaia/Main.java -d bin
+javac -cp bin:lib/* src/cobaia/Dado.java -d bin
+javac -cp bin:lib/* src/cobaia/Dados.java -d bin
+javac -cp bin:lib/* src/cobaia/Agua.java -d bin
+javac -cp bin:lib/* src/cobaia/Main.java -d bin
+javac -cp bin:lib/* src/cobaia/Genero.java -d bin
+javac -cp bin:lib/* src/cobaia/Endereco.java -d bin
+javac -cp bin:lib/* src/cobaia/Cliente.java -d bin
 echo Compilado.

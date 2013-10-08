@@ -1,4 +1,4 @@
 #!/bin/bash
 echo Executando ...
-java -cp bin cobaia.Main
+java -cp bin:lib/* cobaia.Main
 echo Finalizado.

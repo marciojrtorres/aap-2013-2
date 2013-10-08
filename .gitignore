@@ -7,3 +7,4 @@ doc/
 bin/
 dist/
 *~
+.metadata/
