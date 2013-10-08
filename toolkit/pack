@@ -1,0 +1,3 @@
+#!/bin/bash
+echo Empacotando ...
+jar cvf dist/toolkit.jar -C bin/ .
