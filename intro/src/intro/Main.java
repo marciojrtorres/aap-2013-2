@@ -12,7 +12,7 @@ package intro;
 public class Main {
     public static void main(String[] argumentos) {
  
-        char[] caracteres = "aspectos".toCharArray();
+        char[] caracteres = "aspectos".toCharArray(); // teste
 
         for (int i = 0; i < caracteres.length; i++) {
             System.out.println((int)caracteres[i]);

@@ -8,7 +8,7 @@ public class List {
     private      int length;
 
     public List() {
-        initialize();        
+        initialize();
     }
 
     private void initialize() {
@@ -60,7 +60,7 @@ public class List {
 
         for (int j = this.length; j > i; j--) {
             this.elementos[j] = this.elementos[j-1];
-        }        
+        }
 
         this.elementos[i] = o;   
     }
