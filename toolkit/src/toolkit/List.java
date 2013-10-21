@@ -6,12 +6,7 @@ public class List<T> {
 
     private Object[] elementos;
     private      int length;
-    
-    private ObjectFilter<T> filter;
-    
-    public void setFilter(ObjectFilter<T> filter) {
-		this.filter = filter;
-	}
+
 
     public List() {
         initialize();        
@@ -24,7 +19,6 @@ public class List<T> {
 
     public void append(T o) {    	
         if (o == null) return;
-        if (filter != null && filter.isInvalid(o)) return;
         this.checkCapacity();
         this.elementos[this.length++] = o;
     }
@@ -53,7 +47,6 @@ public class List<T> {
     public void insert(int i, T o) {        
 
         if (o == null) return;
-        if (filter != null && filter.isInvalid(o)) return;
         
         if (i > this.lastIndex()) {
             this.append(o);

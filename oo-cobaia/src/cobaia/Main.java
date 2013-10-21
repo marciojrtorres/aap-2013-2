@@ -1,38 +1,37 @@
 package cobaia;
 
-import static java.lang.System.out;
 import toolkit.List;
-import toolkit.ObjectFilter;
 
 public class Main {
     public static void main(String[] argumentos) {
         	
-    	Endereco e1 = new Endereco();
-    	e1.setRua("Alfredo Huch");    	
+    	Cliente c1 = new Cliente();
+    	c1.setCodigo(0);
+    	c1.setNome("Bruno Lima");
+    	c1.setCpf("11122233344");
     	
-    	Endereco e2 = new Endereco();
-    	e2.setRua("General Camara");
-    	e2.setNumero("555");
+    	Cliente c2 = new Cliente();
+    	c2.setCodigo(12);
+    	c2.setNome("Bruno Lima");
+    	c2.setCpf("11122233344");
     	
-    	List<Endereco> lista = new List<Endereco>();
+    	ListClienteValido clientes =
+    			new ListClienteValido();
     	
-//    	lista.setFilter(new ObjectFilter<Endereco>() {
-//
-//			@Override
-//			public boolean isInvalid(Endereco o) {
-//				return o.getNumero() == null;
-//			}
-//		});
+    	clientes.append(c1);
+    	clientes.append(c2);
     	
-    	lista.append(e1);
-    	lista.append(e2);
-        
-    	System.out.println(lista); // [Alfredo Huch, General Camara 555]    	      
+    	System.out.println(clientes);
     	
-    	// testaLista();
+    
 
     }
 
+    
+    
+    
+    
+    
     
     
     

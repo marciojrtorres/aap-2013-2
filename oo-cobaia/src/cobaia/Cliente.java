@@ -2,12 +2,14 @@ package cobaia;
 
 import toolkit.List;
 
-// Modelo de Domínio
+// Entidade: tem identidade
+// Modelo de Domínio 
 // Vai ser persistente? SIM
 public class Cliente {
     
     private Integer id; // wrapper de int's
     private String  nome;
+    private String  cpf;
     
     private Endereco endereco = new Endereco(); 
     private Genero genero;
@@ -15,7 +17,15 @@ public class Cliente {
 
     private List telefones = new List();
     
-    public void setTelefones(List telefones) {
+    public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public void setTelefones(List telefones) {
         this.telefones = telefones;
     }
 
@@ -63,6 +73,23 @@ public class Cliente {
         return this.endereco;
     }
 
-
+    @Override
+    public boolean equals(Object outro) {
+    	if (outro == null) return false;
+    	if (!(outro instanceof Cliente)) return false;
+    	if (outro == this) return true;
+    	Cliente outroCliente = (Cliente) outro;
+    	if (this.cpf == null || outroCliente.cpf == null) {
+    		return false;
+    	}
+    	return this.cpf.equals(outroCliente.cpf);
+    }
+    
+    @Override
+    public int hashCode() {
+    	if (cpf == null) return 0;
+    	return cpf.hashCode();
+    }
+    
 
 }
