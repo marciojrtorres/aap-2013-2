@@ -80,6 +80,11 @@ public class List<T> {
         this.length--;
         return ret;
     }
+    
+    public Iterator<T> getIterator() {
+    	return new ListIterator<T>();
+    }
+    
 
     private int lastIndex() {
         return this.length - 1;
@@ -113,6 +118,24 @@ public class List<T> {
     		str.append(elementos[i] + ", ");
     	}
     	return str.append("]").toString();
+    }
+    
+    
+    private class ListIterator<T> 
+    			implements Iterator<T> {
+
+    	private int i = 0;
+    	
+		@Override
+		public boolean hasNext() {
+			return i < length();
+		}
+
+		@Override
+		public T next() {
+			return (T) get(i++);
+		}
+    	
     }
     
     

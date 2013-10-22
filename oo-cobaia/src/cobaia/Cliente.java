@@ -1,5 +1,6 @@
 package cobaia;
 
+import toolkit.Iterator;
 import toolkit.List;
 
 // Entidade: tem identidade
@@ -15,7 +16,7 @@ public class Cliente {
     private Genero genero;
     private Boolean vip;
 
-    private List telefones = new List();
+    private List<String> telefones = new List<String>();
     
     public String getCpf() {
 		return cpf;
@@ -25,12 +26,12 @@ public class Cliente {
 		this.cpf = cpf;
 	}
 
-	public void setTelefones(List telefones) {
-        this.telefones = telefones;
+	public void addTelefone(String t) {
+		if (t.startsWith("32")) this.telefones.append(t);
     }
 
-    public List getTelefones() {
-        return telefones;
+    public Iterator<String> getTelefones() {
+        return telefones.getIterator();
     }
 
     public void setVip(Boolean vip) {

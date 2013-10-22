@@ -1,10 +1,47 @@
 package cobaia;
 
+import toolkit.Iterator;
 import toolkit.List;
 
 public class Main {
     public static void main(String[] argumentos) {
         	
+    	List<String> nomes = new List<String>();
+    	
+    	nomes.append("Andrei Garcia");
+    	nomes.append("Vinicius Porto");
+    	nomes.append("Vinicius Montenegro");
+    	nomes.append("Leandro Marques");
+    	nomes.append("Marcos Scholl");
+    	nomes.append("Bruno Lima");
+    	nomes.append("Gabrieli Roldao");
+    	nomes.append("Pedro Costa");
+    	    
+    	for (Iterator<String> it = nomes.getIterator(); it.hasNext();) {
+    		System.out.println(it.next());
+    	}
+    	
+    	Iterator<String> it = nomes.getIterator();
+    	while (it.hasNext()) System.out.println(it.next());
+    	
+    	Cliente c1 = new Cliente();    	
+    	c1.addTelefone("32334455");
+    	c1.addTelefone("32544455");
+    	
+    	Iterator<String> telefones = c1.getTelefones();
+    	while (telefones.hasNext()) {
+    		System.out.println(telefones.next());
+    	}
+    	    	
+
+    }
+
+    
+    
+    
+    
+    
+    private static void testaTemplateMethod() {
     	Cliente c1 = new Cliente();
     	c1.setCodigo(0);
     	c1.setNome("Bruno Lima");
@@ -22,17 +59,7 @@ public class Main {
     	clientes.append(c2);
     	
     	System.out.println(clientes);
-    	
-    
-
     }
-
-    
-    
-    
-    
-    
-    
     
     
     
