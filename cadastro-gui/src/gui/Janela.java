@@ -1,19 +1,20 @@
 package gui;
-import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import domain.Contato;
+import domain.ContatoChangeEvent;
+import domain.ContatoChangeListener;
 
 
-public class Janela extends JFrame {
+public class Janela extends JFrame 
+					implements ContatoChangeListener {
 
 	private final Contato contato;
 	private final JTextField textFieldNome;
@@ -21,6 +22,8 @@ public class Janela extends JFrame {
 
 	public Janela(final Contato c) {
 		this.contato = c;
+		
+		contato.addContatoChangeListener(this);
 		
 		this.setLayout(new GridLayout(3, 2));
 		
@@ -58,12 +61,19 @@ public class Janela extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();
 		//setSize(400, 300);
+		
+		
 	}
 
 	public void visible() {
 		setVisible(true);
 	}
 
+	@Override
+	public void contatoChange(ContatoChangeEvent e) {
+		textFieldNome.setText(e.getNome());
+		textFieldTelefone.setText(e.getTelefone());
+	}	
 
 }
 

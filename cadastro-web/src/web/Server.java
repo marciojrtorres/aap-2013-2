@@ -54,7 +54,7 @@ public class Server {
 				}
 				
 				if (params.containsKey("telefone")) {
-					contato.setNome(params.get("telefone"));
+					contato.setTelefone(params.get("telefone"));
 					responseText += "Telefone do contato alterado para " + params.get("telefone") + "; ";
 				}
 				
