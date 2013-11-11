@@ -59,7 +59,7 @@ public class MonitorWindow extends JFrame
 
 	@Override
 	public void onDiskSpaceChange(DiskSpaceChangeEvent evt) {
-		System.out.println("evento recebido");
+		textFieldFreeSpace.setText(evt.getFreeSpaceInMegaBytes() + "");
 	}
 
 

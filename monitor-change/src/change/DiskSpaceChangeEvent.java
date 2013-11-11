@@ -11,5 +11,13 @@ public class DiskSpaceChangeEvent {
 	public long getFreeSpace() {
 		return freeSpace;
 	}
+
+	public long getFreeSpaceInMegaBytes() {
+		return freeSpace / 1024 / 1024;
+	}
+	
+	public long getFreeSpaceInMibiBytes() {
+		return freeSpace / 1000 / 1000;
+	}
 	
 }
