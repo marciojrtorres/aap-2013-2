@@ -8,15 +8,22 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import change.DiskSpaceChangeEvent;
+import change.DiskSpaceChangeEventSource;
+import change.DiskSpaceListener;
 
-public class MonitorWindow extends JFrame {
+
+public class MonitorWindow extends JFrame 
+			implements DiskSpaceListener {
 
 	private static final long serialVersionUID = 1L;
 	
 	private final JTextField textFieldFreeSpace;
 	
 
-	public MonitorWindow() {
+	public MonitorWindow(DiskSpaceChangeEventSource o) {
+		
+		o.addDiskSpaceListener(this);
 		
 		this.setTitle("Monitorador de espaço livre");
 		
@@ -48,6 +55,11 @@ public class MonitorWindow extends JFrame {
 
 	public void visible() {
 		setVisible(true);
+	}
+
+	@Override
+	public void onDiskSpaceChange(DiskSpaceChangeEvent evt) {
+		System.out.println("evento recebido");
 	}
 
 

@@ -2,11 +2,33 @@ package monitor.core;
 
 import java.io.File;
 
-public class MonitorEngine {
-    
+import javax.swing.JButton;
+import javax.swing.JTextField;
+
+import toolkit.List;
+import change.DiskSpaceChangeEvent;
+import change.DiskSpaceChangeEventSource;
+import change.DiskSpaceListener;
+
+// observado, gerador, produtor  
+
+public class MonitorEngine implements DiskSpaceChangeEventSource {
     
     private long freeSpace = 0;
 	private final String path;
+	
+	private List<DiskSpaceListener> ouvintes 
+					= new List<DiskSpaceListener>();
+	
+	@Override
+	public void addDiskSpaceListener(DiskSpaceListener l) {
+		ouvintes.append(l);
+	}
+	
+	@Override
+	public void removeDiskSpaceListener(DiskSpaceListener l) {
+		// ouvintes.remove(l);
+	}
 	
 	public MonitorEngine(final String path) {
 		this.path = path;
@@ -33,6 +55,12 @@ public class MonitorEngine {
                         if (dir.getFreeSpace() != freeSpace) {
                             freeSpace = dir.getFreeSpace();
                             System.out.println("new free space " + freeSpace);
+                            
+                            for (int i = 0; i < ouvintes.length(); i++) {
+                            	DiskSpaceListener ouvinte = ouvintes.get(i);
+                            	ouvinte.onDiskSpaceChange(new DiskSpaceChangeEvent(freeSpace));
+                            }
+                            
                         }
                         Thread.sleep(1000); 
                     } catch (Exception e) {
