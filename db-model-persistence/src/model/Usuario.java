@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class Usuario {
 
 	private Integer id;
@@ -9,47 +11,46 @@ public class Usuario {
 	private Perfil perfil;
 	
 	
-	public Usuario() {
-		perfil = new Perfil();
-	}
-	
-	public Usuario(Perfil perfil) {
-		this.perfil = perfil;
-	}
-	
-	
 	public Perfil getPerfil() {
+		// lazy initialization, inicialização tardia/atrasada/preguiçosa
+		
+		if (id == null && perfil == null) perfil = new Perfil();
+		
+		if (id != null && perfil == null) {
+			perfil = new UsuarioDAO().selectPerfil(this);			
+			if (perfil == null) perfil = new Perfil();
+		}
+		
 		return perfil;
 	}
 
-	public void setPerfil(Perfil perfil) {
-		this.perfil = perfil;
-	}
-	
-	
 
 	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	// Fluent API (API fluente)
+	public Usuario setId(Integer id) {
 		this.id = id;
+		return this;
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) {
+	public Usuario setEmail(String email) {
 		this.email = email;
+		return this;
 	}
 
 	public String getSenha() {
 		return senha;
 	}
 
-	public void setSenha(String senha) {
+	public Usuario setSenha(String senha) {
 		this.senha = senha;
+		return this;
 	}
 
 	@Override
@@ -92,6 +93,24 @@ public class Usuario {
 			dao.update(this);
 		}
 		
+		if (perfil != null) {
+			dao.updatePerfil(this);
+		}
+		
+	}
+
+
+	public static Usuario load(int id) {
+		UsuarioDAO dao = new UsuarioDAO();
+		
+		return dao.select(id);
+	}
+
+
+	public static List<Usuario> all() {
+		UsuarioDAO dao = new UsuarioDAO();
+		
+		return dao.select();
 	}
 	
 

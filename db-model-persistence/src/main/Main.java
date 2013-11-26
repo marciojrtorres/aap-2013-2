@@ -6,16 +6,36 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		Usuario u = new Usuario();
-		u.setEmail("raquel@uni.com");
-		u.setSenha("1234");
+		new Usuario()
+			.setEmail("pedro@hotmail.com")
+			.setSenha("3456")
+			.save();
 		
-		System.out.println(u); // id == null
-		
-		u.save();
+		Usuario.load(2).setSenha("1212").save();
 		
 		
-		System.out.println(u); // id?
+//		Usuario u = Usuario.load(1);
+//		
+//		u.getPerfil().setDataNascimento(new Date());
+//		
+//		System.out.println(u.getPerfil());
+//		
+//		u.save();
+		
+		
+		
+		
+		
+//		Usuario u = new Usuario();
+//		u.setEmail("manoel223ee22@outlook.com");
+//		u.setSenha("123443423423432434234");
+//		
+//		u.getPerfil().setNome("Manoel");
+//		u.getPerfil().setSobrenome("Almeida");
+//		
+//		u.save();
+//		
+//		System.out.println(u); // id?
 		
 
 	}

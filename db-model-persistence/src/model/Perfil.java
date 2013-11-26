@@ -13,32 +13,36 @@ public class Perfil {
 		return nome;
 	}
 
-	public void setNome(String nome) {
+	public Perfil setNome(String nome) {
 		this.nome = nome;
+		return this;
 	}
 
 	public String getSobrenome() {
 		return sobrenome;
 	}
 
-	public void setSobrenome(String sobrenome) {
+	public Perfil setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
+		return this;
 	}
 
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public Perfil setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
+		return this;
 	}
 
 	public Genero getGenero() {
 		return genero;
 	}
 
-	public void setGenero(Genero genero) {
+	public Perfil setGenero(Genero genero) {
 		this.genero = genero;
+		return this;
 	}
 
 	@Override
