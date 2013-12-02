@@ -13,17 +13,24 @@ import javax.swing.table.AbstractTableModel;
 
 import tr.domain.Produto;
 import tr.persistencia.ProdutoDAO;
+import tr.persistencia.ProdutoSalvaEvent;
+import tr.persistencia.SalvaProdutoListener;
 
-public class ListaProdutoFrame extends JFrame {
+public class ListaProdutoFrame extends JFrame
+				implements SalvaProdutoListener {
 
 	private static final long serialVersionUID = 1L;
 	
-	private ProdutoDAO dao = new ProdutoDAO();
+	private ProdutoDAO dao;
 	private JTable table;
 	
-	public ListaProdutoFrame() {
+	public ListaProdutoFrame(ProdutoDAO dao) {
+		
+		this.dao = dao;
 		
 		populate();
+		
+		dao.addSalvaProdutoListener(this);
 		
 		JScrollPane scroll = new JScrollPane(table);
 		
@@ -92,6 +99,11 @@ public class ListaProdutoFrame extends JFrame {
 			return null;
 		}
 		
+	}
+
+	@Override
+	public void produtoSalvo(ProdutoSalvaEvent produtoSalvaEvent) {
+		populate();		
 	}
 	
 	

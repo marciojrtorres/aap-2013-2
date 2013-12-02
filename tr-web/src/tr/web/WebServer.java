@@ -16,10 +16,11 @@ import com.sun.net.httpserver.HttpServer;
 
 public class WebServer {
 	
-	private ProdutoDAO dao = new ProdutoDAO();
+	private ProdutoDAO dao;
 	private HttpServer server;
 	
-	public WebServer() {	
+	public WebServer(ProdutoDAO dao) {
+		this.dao = dao;
 		try {
 			initializeServer();
 		} catch (IOException e) {

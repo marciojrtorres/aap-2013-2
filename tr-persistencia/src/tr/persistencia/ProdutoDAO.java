@@ -10,6 +10,14 @@ import java.util.List;
 import tr.domain.Produto;
 
 public class ProdutoDAO {
+	
+	private List<SalvaProdutoListener> listeners = 
+			new ArrayList<SalvaProdutoListener>();
+	
+	public void addSalvaProdutoListener(SalvaProdutoListener l) {
+		this.listeners.add(l);
+	}
+	
 
 	public void salva(Produto p) {
 
@@ -23,7 +31,12 @@ public class ProdutoDAO {
 			cmd.execute("INSERT INTO produtos (descricao) VALUES ('" + p .getDescricao() + "');", Statement.RETURN_GENERATED_KEYS);
 
 			ResultSet generatedKeys = cmd.getGeneratedKeys();
-			if (generatedKeys.next()) p.setId(generatedKeys.getInt(1));
+			if (generatedKeys.next()) {
+				p.setId(generatedKeys.getInt(1));
+				for (SalvaProdutoListener l : listeners) {
+					l.produtoSalvo(new ProdutoSalvaEvent(p));
+				}
+			}
 			else throw new RuntimeException("Produto não foi salvo");
 			
 			cmd.close();
