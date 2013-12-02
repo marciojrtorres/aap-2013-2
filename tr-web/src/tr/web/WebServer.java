@@ -16,11 +16,11 @@ import com.sun.net.httpserver.HttpServer;
 
 public class WebServer {
 	
-	private ProdutoDAO dao;
+	// acessando o Singleton
+	private ProdutoDAO dao = ProdutoDAO.getDAO();
 	private HttpServer server;
 	
-	public WebServer(ProdutoDAO dao) {
-		this.dao = dao;
+	public WebServer() {
 		try {
 			initializeServer();
 		} catch (IOException e) {

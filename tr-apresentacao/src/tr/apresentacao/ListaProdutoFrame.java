@@ -21,12 +21,11 @@ public class ListaProdutoFrame extends JFrame
 
 	private static final long serialVersionUID = 1L;
 	
-	private ProdutoDAO dao;
+	// acessando o Singleton
+	private ProdutoDAO dao = ProdutoDAO.getDAO();
 	private JTable table;
 	
-	public ListaProdutoFrame(ProdutoDAO dao) {
-		
-		this.dao = dao;
+	public ListaProdutoFrame() {
 		
 		populate();
 		
@@ -44,6 +43,7 @@ public class ListaProdutoFrame extends JFrame
 				populate();				
 			}
 		});
+		
 		
 		add(btAtualizar, BorderLayout.SOUTH);
 		

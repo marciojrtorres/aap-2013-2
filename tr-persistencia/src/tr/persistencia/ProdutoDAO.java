@@ -18,6 +18,18 @@ public class ProdutoDAO {
 		this.listeners.add(l);
 	}
 	
+	// 1o passo: construtor privado
+	// proibindo a instanciação
+	private ProdutoDAO() {  }
+	
+	// 2o passo: construir a si mesmo
+	private static ProdutoDAO dao = new ProdutoDAO();
+	
+	// 3o passo: fornecer um método para acesso
+	public static ProdutoDAO getDAO() {
+		return dao;
+	}
+	
 
 	public void salva(Produto p) {
 

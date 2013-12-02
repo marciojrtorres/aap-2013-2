@@ -11,21 +11,18 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		ProdutoDAO dao = new ProdutoDAO();
-		
-		ListaProdutoFrame frame = new ListaProdutoFrame(dao);
+		ListaProdutoFrame frame = new ListaProdutoFrame();
 		frame.visible();
 		
-		WebServer ws = new WebServer(dao);
+		WebServer ws = new WebServer();
 		ws.start();
 
 		while (true) {
 			String d = JOptionPane.showInputDialog("Descrição:");
 			Produto p = new Produto();
 			p.setDescricao(d);
-			dao.salva(p);
+			// acessando o Singleton
+			ProdutoDAO.getDAO().salva(p);
 		}
-
 	}
-
 }
