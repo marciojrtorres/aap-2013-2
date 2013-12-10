@@ -6,7 +6,7 @@ import static toolkit.StringUtil.*;
 public class Main {
     public static void main(String[] argumentos) {
         
-    	
+    	System.out.println(StringUtil.lower('C') == 'c');
         
     }   
 }

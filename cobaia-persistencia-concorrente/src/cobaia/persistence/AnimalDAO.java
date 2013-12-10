@@ -12,7 +12,7 @@ public class AnimalDAO extends BaseDAO<Animal> {
     public Animal load(int id) {
         try {            
             // BLOQUEIO
-             PreparedStatement cmd = prepare("SELECT * FROM animais WHERE id_animal = ? FOR UPDATE"); // para pessimista
+            PreparedStatement cmd = prepare("SELECT * FROM animais WHERE id_animal = ? FOR UPDATE"); // para pessimista
             
             // PreparedStatement cmd = prepare("SELECT * FROM animais WHERE id_animal = ?");
              
@@ -63,17 +63,15 @@ public class AnimalDAO extends BaseDAO<Animal> {
                 throw new RuntimeException("O animal " + animal + " não foi salvo");
             }
             
-            // con.commit(); // para pessimista
+            con.commit(); // para pessimista
 
         } catch (Exception e) {
             
-            /*
             try {
                 con.rollback();
             } catch (SQLException sqle) {
                 System.err.println(sqle);
-            }
-            */
+            }            
         	
             System.err.println(e.toString());
             throw new RuntimeException("Não foi possível salvar o animal " + animal, e);

@@ -32,18 +32,18 @@ public class AnimalEditarFrame extends javax.swing.JFrame {
 
     public AnimalEditarFrame(int id) {
         this();
-        //disableAllComponents();
+        disableAllComponents();
         try {
-            //lbRegistroBloqueado.setVisible(true);
+            lbRegistroBloqueado.setVisible(true);
             animal = dao.load(id);
-            //lbRegistroBloqueado.setVisible(false);
+            lbRegistroBloqueado.setVisible(false);
             modelToUi();
         } catch (Exception e) {
             System.err.println("Não foi possível editar o animal com o id " + id);
             showErrorMessage(e.toString());
             this.dispose();
         }
-        //enableAllComponents();
+        enableAllComponents();
     }
 
     @SuppressWarnings("unchecked")

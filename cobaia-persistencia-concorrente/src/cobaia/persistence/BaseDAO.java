@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 
 public abstract class BaseDAO<T extends IModel> {
 
-    private static final String URL     = "jdbc:mysql://localhost:3306/petshop";
+    private static final String URL     = "jdbc:mysql://10.132.214.45:3306/petshop";
     private static final String USUARIO = "aluno";
     private static final String SENHA   = "aluno";
     private static final String DRIVER  = "com.mysql.jdbc.Driver";
@@ -33,7 +33,7 @@ public abstract class BaseDAO<T extends IModel> {
             con = DriverManager.getConnection(URL, USUARIO, SENHA); // BEGIN AUTOMÁTICO                        
             
             // commit é a submissão do comando (faz!)
-            // con.setAutoCommit(false); // para pessimista
+            con.setAutoCommit(false); // para pessimista
 
         } catch (Exception e) {
             System.err.println(e.toString());

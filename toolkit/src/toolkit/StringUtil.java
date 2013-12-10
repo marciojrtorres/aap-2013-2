@@ -93,6 +93,8 @@ public class StringUtil {
     }   
 
     public static String trim(String s) {
+    	if (s == null) throw new NullPointerException();
+    	//throw new RuntimeException();
         return s;
     }
 }

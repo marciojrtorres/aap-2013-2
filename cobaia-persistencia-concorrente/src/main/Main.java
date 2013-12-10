@@ -6,6 +6,10 @@ public class Main {
 
     public static void main(String[] args) {
 
+    	// LAST WINS: o último vence
+    	// PESSIMISTIC LOCK: bloqueio pessimista
+    	
+    	
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             @Override
